@@ -1,6 +1,5 @@
 const express = require("express");
 require("dotenv").config();
-const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 const schedule = require("node-schedule");
 const morgan = require("morgan");
 const bodyParser = require("body-parser");
@@ -32,6 +31,10 @@ schedule.scheduleJob(rule, function () {
 const app = express();
 
 app.use(express.json());
+
+app.get("/", (req, res) => {
+  res.send("Hello World!");
+});
 
 app.listen(3000, () => {
   console.log("Server listening on port 3000");
